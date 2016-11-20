@@ -11,6 +11,14 @@ register_nav_menus(
     )
 );
 
+add_filter('default_hidden_meta_boxes', 'be_hidden_meta_boxes', 10, 2);
+function be_hidden_meta_boxes($hidden, $screen) {
+    if ( 'post' == $screen->base || 'page' == $screen->base )
+        $hidden = array('slugdiv', 'trackbacksdiv', 'postexcerpt', 'commentstatusdiv', 'commentsdiv', 'authordiv', 'revisionsdiv');
+    // removed 'postcustom',
+    return $hidden;
+}
+
 function wp_blank_register_sidebars() {
     register_sidebar(array(				// Start a series of sidebars to register
         'id' => 'sidebar', 					// Make an ID
@@ -29,9 +37,16 @@ add_action( 'widgets_init', 'wp_blank_register_sidebars' );
 
 function wp_blank_styles()  {
     wp_enqueue_style('https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css');
+    wp_enqueue_style('core.css', get_stylesheet_directory_uri() . '/css/core.css');
     wp_enqueue_style('style.css', get_stylesheet_directory_uri() . '/style.css');
 }
 add_action( 'wp_enqueue_scripts', 'wp_blank_styles' );
+
+/* ADD MORE IMAGE SIZES */
+add_theme_support( 'post-thumbnails' );
+// add_image_size( 'image-size-name-here', 640, 480, true );
+// Copy and paste the line above and add more to add more image sizes.
+
 
 /**
  * Deregister WordPress default jQuery
@@ -45,3 +60,15 @@ function wp_blank_jquery_enqueue() {
 if ( !is_admin() ) {
     add_action( 'wp_enqueue_scripts', 'wp_blank_jquery_enqueue', 11 );
 }
+
+
+/* Add ACF Theme Options */
+/*
+if( function_exists('acf_add_options_page') ) {
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-settings',
+	));
+}
+*/
