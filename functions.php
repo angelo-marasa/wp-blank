@@ -6,8 +6,8 @@ add_theme_support( 'automatic-feed-links' );
 register_nav_menus(
     array(
         'primary'	=>	__( 'Primary Menu', 'wp_blank' ), // Register the Primary menu
-        // Copy and paste the line above right here if you want to make another menu,
-        // just change the 'primary' to another name
+        /** Copy and paste the line above right here if you want to make another menu,
+         * just change the 'primary' to another name */
     )
 );
 
@@ -29,8 +29,8 @@ function wp_blank_register_sidebars() {
         'before_title' => '<h3 class="side-title">',	// What to display before each widget's title
         'after_title' => '</h3>',		// What to display following each widget's title
         'empty_title'=> '',					// What to display in the case of no title defined for a widget
-        // Copy and paste the lines above right here if you want to make another sidebar,
-        // just change the values of id and name to another word/name
+        /** Copy and paste the lines above right here if you want to make another sidebar,
+         * just change the values of id and name to another word/name */
     ));
 }
 add_action( 'widgets_init', 'wp_blank_register_sidebars' );
@@ -45,7 +45,7 @@ add_action( 'wp_enqueue_scripts', 'wp_blank_styles' );
 /** ADD MORE IMAGE SIZES */
 add_theme_support( 'post-thumbnails' );
 // add_image_size( 'image-size-name-here', 640, 480, true );
-// Copy and paste the line above and add more to add more image sizes.
+/** Copy and paste the line above and add more to add more image sizes. */
 
 
 /**
@@ -55,6 +55,7 @@ add_theme_support( 'post-thumbnails' );
 function wp_blank_jquery_enqueue() {
     wp_deregister_script( 'jquery' );
     wp_register_script( 'jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js", false, null, true );
+    /** the last true moves to footer, make false to add to header */
     wp_enqueue_script( 'jquery' );
 }
 if ( !is_admin() ) {
