@@ -42,7 +42,7 @@ function wp_blank_styles()  {
 }
 add_action( 'wp_enqueue_scripts', 'wp_blank_styles' );
 
-/* ADD MORE IMAGE SIZES */
+/** ADD MORE IMAGE SIZES */
 add_theme_support( 'post-thumbnails' );
 // add_image_size( 'image-size-name-here', 640, 480, true );
 // Copy and paste the line above and add more to add more image sizes.
@@ -54,7 +54,7 @@ add_theme_support( 'post-thumbnails' );
  */
 function wp_blank_jquery_enqueue() {
     wp_deregister_script( 'jquery' );
-    wp_register_script( 'jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js", false, null );
+    wp_register_script( 'jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js", false, null, true );
     wp_enqueue_script( 'jquery' );
 }
 if ( !is_admin() ) {
@@ -62,7 +62,7 @@ if ( !is_admin() ) {
 }
 
 
-/* Add ACF Theme Options */
+/** Add ACF Theme Options */
 /*
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(
