@@ -36,9 +36,9 @@ function wp_blank_register_sidebars() {
 add_action( 'widgets_init', 'wp_blank_register_sidebars' );
 
 function wp_blank_styles()  {
-    wp_enqueue_style('https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css');
-    wp_enqueue_style('core.css', get_stylesheet_directory_uri() . '/css/core.css');
-    wp_enqueue_style('style.css', get_stylesheet_directory_uri() . '/style.css');
+    wp_enqueue_style('materialize', '//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css');
+    wp_enqueue_style('core', get_stylesheet_directory_uri() . '/css/core.css');
+    wp_enqueue_style('style', get_stylesheet_directory_uri() . '/style.css');
 }
 add_action( 'wp_enqueue_scripts', 'wp_blank_styles' );
 
