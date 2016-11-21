@@ -5,7 +5,7 @@ add_theme_support( 'automatic-feed-links' );
 
 register_nav_menus(
     array(
-        'primary'	=>	__( 'Primary Menu', 'wp_blank' ), // Register the Primary menu
+        'primary'	=>	__( 'Header Navigation', 'wp_blank' ), // Register the Primary menu
         /** Copy and paste the line above right here if you want to make another menu,
          * just change the 'primary' to another name */
     )
