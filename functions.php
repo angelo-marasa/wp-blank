@@ -5,7 +5,7 @@ add_theme_support( 'automatic-feed-links' );
 
 register_nav_menus(
     array(
-        'primary'	=>	__( 'Header Navigation', 'wp_blank' ), // Register the Primary menu
+        'Header Navigation'	=>	__( 'Header Navigation', 'wp_blank' ), // Register the Primary menu
         /** Copy and paste the line above right here if you want to make another menu,
          * just change the 'primary' to another name */
     )
@@ -36,7 +36,7 @@ function wp_blank_register_sidebars() {
 add_action( 'widgets_init', 'wp_blank_register_sidebars' );
 
 function wp_blank_styles()  {
-    wp_enqueue_style('materialize', '//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css');
+    // wp_enqueue_style('materialize', '//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css');
     wp_enqueue_style('core', get_stylesheet_directory_uri() . '/css/core.css');
     wp_enqueue_style('style', get_stylesheet_directory_uri() . '/style.css');
 }
@@ -48,19 +48,31 @@ add_theme_support( 'post-thumbnails' );
 /** Copy and paste the line above and add more to add more image sizes. */
 
 
+
 /**
- * Deregister WordPress default jQuery
- * Register and Enqueue Google CDN jQuery
+ * Automatically move JavaScript code to page footer, speeding up page loading time.
  */
-function wp_blank_jquery_enqueue() {
-    wp_deregister_script( 'jquery' );
+remove_action('wp_head', 'wp_print_scripts');
+remove_action('wp_head', 'wp_print_head_scripts', 9);
+remove_action('wp_head', 'wp_enqueue_scripts', 1);
+add_action('wp_footer', 'wp_print_scripts', 5);
+add_action('wp_footer', 'wp_enqueue_scripts', 5);
+add_action('wp_footer', 'wp_print_head_scripts', 5);
+
+/** Enqueue Javascripts */
+function wp_blank_js_enqueue() {
+    wp_deregister_script( 'jquery' ); /** Removes default WP JQuery */
     wp_register_script( 'jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js", false, null, true );
-    /** the last true moves to footer, make false to add to header */
     wp_enqueue_script( 'jquery' );
 }
 if ( !is_admin() ) {
-    add_action( 'wp_enqueue_scripts', 'wp_blank_jquery_enqueue', 11 );
+    add_action( 'wp_enqueue_scripts', 'wp_blank_js_enqueue', 11 );
 }
+
+/** Custom Footer Code */
+function wp_blank_footer_scripts() {
+
+} add_action('wp_footer', 'wp_blank_footer_scripts');
 
 
 /** Add ACF Theme Options */
