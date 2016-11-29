@@ -29,9 +29,9 @@ function wp_blank_register_sidebars() {
         'before_title' => '<h3 class="side-title">',	// What to display before each widget's title
         'after_title' => '</h3>',		// What to display following each widget's title
         'empty_title'=> '',					// What to display in the case of no title defined for a widget
-        /** Copy and paste the lines above right here if you want to make another sidebar,
-         * just change the values of id and name to another word/name */
     ));
+    /** Copy and paste the lines above right here if you want to make another sidebar,
+     * just change the values of id and name to another word/name */
 }
 add_action( 'widgets_init', 'wp_blank_register_sidebars' );
 
