@@ -3,17 +3,17 @@
 img { max-width: 100%; height: auto; }
 
 .mtm { margin-top: 1em; }
-.emtm { margin-top: 2em; }
+.mmtm { margin-top: 2em; }
 .mrm { margin-right: 1em; }
 .mbm { margin-bottom: 1em; }
-.embm { margin-bottom: 2em; }
+.mmbm { margin-bottom: 2em; }
 .mlm { margin-left: 1em; }
 
 .mtp { padding-top: 1em; }
-.emtp { padding-top: 2em; }
+.mmtp { padding-top: 2em; }
 .mrp { padding-right: 1em; }
 .mbp { padding-bottom: 1em; }
-.embp { padding-bottom: 2em; }
+.mmbp { padding-bottom: 2em; }
 .mlp { padding-left: 1em; }
 
 .ntm { margin-top: 0; }
