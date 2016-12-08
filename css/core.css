@@ -2,6 +2,8 @@
 
 img { max-width: 100%; height: auto; }
 
+a { text-decoration: underline; }
+
 .mtm { margin-top: 1em; }
 .mmtm { margin-top: 2em; }
 .mrm { margin-right: 1em; }
@@ -35,17 +37,17 @@ img { max-width: 100%; height: auto; }
     .md-nlm { margin-left: 0; }
     .md-nrm { margin-right: 0; }
 }
-@media (max-width: 768px) {
-    .sm-left { text-align: left; }
-    .sm-center { text-align: center; }
-    .sm-right { text-align: right; }
+@media (min-width: 768px) {
+    .sm-text-left { text-align: left; }
+    .sm-text-center { text-align: center; }
+    .sm-text-right { text-align: right; }
     .sm-nlp { padding-left: 0; }
     .sm-nrp { padding-right: 0; }
     .sm-nlm { margin-left: 0; }
     .sm-nrm { margin-right: 0; }
 }
-@media (max-width: 992px) {
-    .xs-left { text-align: left; }
-    .xs-center { text-align: center; }
-    .xs-right { text-align: right; }
+@media (max-width: 768px) and (max-width: 991px) {
+    .xs-text-left { text-align: left; }
+    .xs-text-center { text-align: center; }
+    .xs-text-right { text-align: right; }
 }
