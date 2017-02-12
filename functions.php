@@ -2,7 +2,13 @@
 define( 'WP_BLANK_VERSION', 1.0 );
 
 add_theme_support( 'automatic-feed-links' );
+add_theme_support( 'post-thumbnails' );
 
+/** ADD MORE THUMBNAIL IMAGE SIZES **/
+// add_image_size( 'image-size-name-here', 640, 480, true );
+/** Copy and paste the line above and add more to add more image sizes. */
+
+/** REGISTER NAV MENUS **/
 register_nav_menus(
     array(
         'Header Navigation'	=>	__( 'Header Navigation', 'wp_blank' ), // Register the Primary menu
@@ -11,14 +17,7 @@ register_nav_menus(
     )
 );
 
-add_filter('default_hidden_meta_boxes', 'be_hidden_meta_boxes', 10, 2);
-function be_hidden_meta_boxes($hidden, $screen) {
-    if ( 'post' == $screen->base || 'page' == $screen->base )
-        $hidden = array('slugdiv', 'trackbacksdiv', 'postexcerpt', 'commentstatusdiv', 'commentsdiv', 'authordiv', 'revisionsdiv');
-    // removed 'postcustom',
-    return $hidden;
-}
-
+/** REGISTER SIDEBARS **/
 function wp_blank_register_sidebars() {
     register_sidebar(array(				// Start a series of sidebars to register
         'id' => 'sidebar', 					// Make an ID
@@ -35,56 +34,21 @@ function wp_blank_register_sidebars() {
 }
 add_action( 'widgets_init', 'wp_blank_register_sidebars' );
 
-/** Registers CSS Stylesheets **/
+/** ENQUEUE STYLESHEETS **/
 function wp_blank_styles() {
-	wp_enqueue_style('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css');
-	wp_enqueue_style('core', get_stylesheet_directory_uri() . '/css/core.css');
-	wp_enqueue_style('style', get_stylesheet_directory_uri() . '/style.css');
+    wp_enqueue_style('bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css');
+    wp_enqueue_style('core', get_stylesheet_directory_uri() . '/css/core.css');
+    wp_enqueue_style('style', get_stylesheet_directory_uri() . '/style.css');
 }
-add_action( 'wp_enqueue_styles', 'wp_blank_styles' );
+add_action( 'wp_enqueue_scripts', 'wp_blank_styles' );
 
-/** ADD MORE IMAGE SIZES */
-add_theme_support( 'post-thumbnails' );
-// add_image_size( 'image-size-name-here', 640, 480, true );
-/** Copy and paste the line above and add more to add more image sizes. */
-
-
-
-/**
- * Automatically move JavaScript code to page footer, speeding up page loading time.
- */
-remove_action('wp_head', 'wp_print_scripts');
-remove_action('wp_head', 'wp_print_head_scripts', 9);
-remove_action('wp_head', 'wp_enqueue_scripts', 1);
-add_action('wp_footer', 'wp_print_scripts', 5);
-add_action('wp_footer', 'wp_enqueue_scripts', 5);
-add_action('wp_footer', 'wp_print_head_scripts', 5);
-
-/** Enqueue Javascripts */
+/** ENQUEUE JAVASCRIPTS **/
 function wp_blank_js_enqueue() {
     wp_deregister_script( 'jquery' ); /** Removes default WP JQuery */
-    wp_register_script( 'jquery',  '//code.jquery.com/jquery-3.1.1.slim.min.js', false, '3.1.1', true );
-    wp_enqueue_script( 'jquery' );
+    wp_enqueue_script( 'jquery',  '//code.jquery.com/jquery-3.1.1.slim.min.js', false, '3.1.1', true );
     wp_enqueue_script( 'bootstraptether', "//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js", array('jquery'), '1.4.0', true );
     wp_enqueue_script( 'bootstrapjs', "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js", array('bootstraptether'), '4.0.0', true );
 }
 if ( !is_admin() ) {
     add_action( 'wp_enqueue_scripts', 'wp_blank_js_enqueue', 11 );
 }
-
-/** Custom Footer Code */
-function wp_blank_footer_scripts() {
-
-} add_action('wp_footer', 'wp_blank_footer_scripts');
-
-
-/** Add ACF Theme Options */
-/*
-if( function_exists('acf_add_options_page') ) {
-	acf_add_options_page(array(
-		'page_title' 	=> 'Theme Settings',
-		'menu_title'	=> 'Theme Settings',
-		'menu_slug' 	=> 'theme-settings',
-	));
-}
-*/
